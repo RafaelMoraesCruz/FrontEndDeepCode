@@ -14,12 +14,34 @@ body{
     color: white;
 }
 
-#content{
-    padding: 20px 10%;
-    min-height: 750px;
+.column-title{
+    text-align: center;
 }
 
-.title-image{
+.column-subtitle-2{
+    padding: 0;
+    text-align: left;
+}
+.column-subtitle-1{
+    padding: 0;
+    text-align: right;
+}
+
+#content{
+    padding: 20px 10%;
+}
+
+.departments-cards{
+    margin: 3%;
+    border-radius: 3%;
+    background-color: #61aafd;
+}
+
+
+#departamentsList{
+    padding: 20px 8%;
+    min-height: 600px;
+
 }
 
 #footer{
