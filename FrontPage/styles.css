@@ -1,0 +1,42 @@
+
+body{
+    background-color: lightblue;
+}
+
+img{
+    border-radius: 50%;
+    margin: 10px;
+    height: 100px;
+    width: 100px;
+}
+
+#navbar{
+    padding: 20px 10%;
+}
+
+.nav-link{
+    color: black;
+}
+
+#content{
+    padding: 20px 10%;
+    min-height: 750px;
+}
+
+#equipe{
+    padding: 5px 10%;
+    color: black;
+}
+
+.card{
+    margin: 10px;
+    text-align: center;
+    background-color: #2369B8;
+    color: black;
+}
+
+
+#footer{
+    text-align: center;
+    color: black;
+}

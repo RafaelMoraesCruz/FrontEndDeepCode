@@ -1,0 +1,29 @@
+body{
+    background-color: lightblue;
+}
+
+#navbar{
+    padding: 20px 10%;
+}
+
+#professorsTab{
+    color: white;
+}
+
+.nav-link{
+    color: black;
+}
+
+
+#content{
+    padding: 20px 10%;
+    min-height: 750px;
+}
+
+
+.title-image{
+}
+
+#footer{
+    text-align: center;
+}

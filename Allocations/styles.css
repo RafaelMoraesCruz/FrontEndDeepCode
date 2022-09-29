@@ -1,0 +1,27 @@
+body{
+    background-color: lightblue;
+}
+
+#navbar{
+    padding: 20px 10%;
+}
+
+.nav-link{
+    color: black;
+}
+
+#allocationsTab{
+    color: white;
+}
+
+#content{
+    padding: 20px 10%;
+    min-height: 750px;
+}
+
+.title-image{
+}
+
+#footer{
+    text-align: center;
+}
