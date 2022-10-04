@@ -14,7 +14,7 @@ async function showAllcourses(){
     }
 }
 
-async function remover(id,name, row){
+async function remover(id,name,row){
     const result = confirm("Você deseja remover o curso de" +name)
     if (result){
         const response = await fetch("http://localhost:8080/courses"+"/"+id, {method:"DELETE"})
