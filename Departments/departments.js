@@ -1,35 +1,35 @@
-const department = document.getElementById("department")
+const table = document.getElementById("department")
 const resultContainer =  document.getElementById('departmentsList')
 
-document.addEventListener("load", search)
-
-function search() {
-    if(department){
-        fetch("http://localhost:8080/departments")
-        .then(response => response.json())
-        .then(quotes => {
-            const table = renderTable(quotes)
-            resultContainer.innerHTML = table;
-    
-    })
-    } else {
-        showAll
-    }}
-
-function showAllDepartments(){
-    fetch("http://localhost:8080/departments")
-    .then(response => response.json())
-    .then(quotes => {
-        const table = renderTable(quotes)
-        resultContainer.innerHTML = table;
-    })
+async function showAllDepartments(){
+    const response = await fetch("http://localhost:8080/departments")
+    if(response.ok){
+        const departments = await response.json();
+        if(departments.length > 0){
+            table.removeAttribute("hidden")
+        }
+        departments.forEach((department) => {
+            createRow(department);
+        });
+    }
 }
 
 
 
-function renderTable( quotes ){
-    let rows = quotes.map((quote) => {
-        return `<tr class="department-row"><td>${quote.id}</td><td>${quote.name}</td></tr>`;
-    });
-    return `<div class="row">${rows.join("")}</div>`;
+function createRow({id,name} ){
+    const row = document.createElement("tr")
+    const idColumn = document.createElement("th")
+    const nameColumn = document.createElement("td")
+
+    row.setAttribute("class","department-row")
+    idColumn.setAttribute("scope","row")
+    idColumn.textContent = id
+    nameColumn.textContent = name
+
+    row.appendChild(idColumn)
+    row.appendChild(nameColumn)
+
+    resultContainer.appendChild(row)
 }
+
+showAllDepartments()

@@ -29,7 +29,36 @@ body{
 
 #content{
     padding: 20px 10%;
-    min-height: 750px;
+}
+
+#professorsContent{
+    min-height: 600px;
+}
+
+.table{
+    margin: auto 10%;
+    width: 70%;
+}
+
+.professor-row {
+    background: linear-gradient(0deg, rgb(209, 209, 209), rgb(209, 209, 209)) no-repeat right bottom / 0 var(--bg-h);
+    transition: background-size 700ms;
+    --bg-h: 100%;
+    margin: 10px;
+    border-radius: 4%;
+    min-height: 100px;
+}
+
+.professor-row:where(:hover, :focus-visible) {
+    background-size: 100% var(--bg-h);
+    background-position-x: left;
+}
+  
+
+#departamentsList{
+    margin: 20px 10%;
+    padding-top: 20px;
+    min-height: 600px;
 }
 
 .title-image{

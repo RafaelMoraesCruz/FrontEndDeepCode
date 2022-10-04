@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="../style.css" />
   </head>
-  <body onload="showAllDepartments()">
+  <body>
     <section class="colored-section" id="navbar">
       <!-- Nav Bar -->
       <div class="container-fluid">
@@ -72,7 +72,7 @@
       <div class="row h-25">
         <div class="row column-title col-lg-4">
           <div class="column-subtitle-1 col-lg-8">
-            <input type="text" class="form-control" placeholder="department" aria-label="department" id="department">
+            <input type="text" class="form-control" placeholder="department" aria-label="department">
           </div>
           <div class="column-subtitle-2 col-lg-4">
             <button type="button" class="btn Search btn-light" onclick="search()">Search</button>
@@ -88,11 +88,12 @@
     </section>
 
     <section id="departmentsContent">
-      <table class="table">
+      <table id="department" class="table" hidden>
         <thead>
           <tr>
             <th scope="col">id</th>
             <th scope="col">Department</th>
+            <th scope="col">Functions</th>
           </tr>
         </thead>
         <tbody id="departmentsList">
