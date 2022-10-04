@@ -20,6 +20,7 @@ async function remover(id,row){
         const response = await fetch("http://localhost:8080/allocations"+"/"+id, {method:"DELETE"})
         if (response.ok){
             resultContainer.removeChild(row)
+            window.location.reload();
         }
     }
 }
