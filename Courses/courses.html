@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="../style.css" />
   </head>
-  <body onload="showAllCourses()">
+  <body>
     <section class="colored-section" id="navbar">
       <!-- Nav Bar -->
       <div class="container-fluid">
@@ -82,7 +82,7 @@
     </section>
 
     <section id="coursesContent">
-      <table class="table">
+      <table class="table" id="course" hidden>
         <thead>
           <tr>
             <th scope="col">id</th>
@@ -96,7 +96,6 @@
       </table>
     </section>
     
-    <script src="courses.js"></script>
     <footer class="colored-section" id="footer">
         <div class="media">
           <svg
@@ -150,5 +149,6 @@
         </div>
         <p class="copyright">© Copyright <a href="https://github.com/RafaelMoraesCruz">RG</a></p>
       </footer>
+      <script src="courses.js"></script>
   </body>
 </html>

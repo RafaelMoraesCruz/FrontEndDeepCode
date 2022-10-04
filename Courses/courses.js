@@ -1,35 +1,56 @@
-const course = document.getElementById("course")
+const table = document.getElementById("course")
 const resultContainer =  document.getElementById('coursesList')
 
-document.addEventListener("load", search)
+async function showAllcourses(){
+    const response = await fetch("http://localhost:8080/courses")
+    if(response.ok){
+        const courses = await response.json();
+        if(courses.length > 0){
+            table.removeAttribute("hidden")
+        }
+        courses.forEach((course) => {
+            createRow(course);
+        });
+    }
+}
 
-function search() {
-    if(course){
-        fetch("http://localhost:8080/Courses")
-        .then(response => response.json())
-        .then(quotes => {
-            const table = renderTable(quotes)
-            resultContainer.innerHTML = table;
+async function remover(id,name,row){
+    const result = confirm("Você deseja remover o curso de" +name)
+    if (result){
+        const response = await fetch("http://localhost:8080/courses"+"/"+id, {method:"DELETE"})
+        if (response.ok){
+            resultContainer.removeChild(row)
+            window.location.reload();
+        }
+    }
+}
+
+
+
+function createRow({id,name}){
+    const row = document.createElement("tr")
+    const idColumn = document.createElement("td")
+    const courseColumn = document.createElement("td")
+    const acoesColumn = document.createElement("td")
+
+    const btnDelete = document.createElement("button")
+    btnDelete.classList.add("btn-info")
+    btnDelete.innerHTML = '<img src="../IMAGES/trash.svg"></img>';
+    btnDelete.addEventListener("click", () => remover(id,name,row))
     
-    })
-    } else {
-        showAll
-    }}
 
-function showAllCourses(){
-    fetch("http://localhost:8080/Courses")
-    .then(response => response.json())
-    .then(quotes => {
-        const table = renderTable(quotes)
-        resultContainer.innerHTML = table;
-    })
+    row.setAttribute("class","course-row")
+    idColumn.setAttribute("scope","row")
+    idColumn.textContent = id
+    courseColumn.textContent = name
+   
+    acoesColumn.appendChild(btnDelete)
+
+    row.appendChild(idColumn)
+    row.appendChild(courseColumn)
+    row.appendChild(acoesColumn)
+
+    resultContainer.appendChild(row)
 }
 
-
-
-function renderTable( quotes ){
-    let rows = quotes.map((quote) => {
-        return `<tr class="course-row"><td>${quote.id}</td><td>${quote.name}</td></tr>`;
-    });
-    return `<div class="row">${rows.join("")}</div>`;
-}
+showAllcourses()

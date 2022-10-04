@@ -14,6 +14,17 @@ async function showAllProfessors(){
     }
 }
 
+async function remover(id,name, row){
+    const result = confirm("Você deseja remover o professor: " +name)
+    if (result){
+        const response = await fetch("http://localhost:8080/professors"+"/"+id, {method:"DELETE"})
+        if (response.ok){
+            resultContainer.removeChild(row)
+            window.location.reload();
+        }
+    }
+}
+
 
 
 function createRow({id,name,cpf,department}){
@@ -22,6 +33,14 @@ function createRow({id,name,cpf,department}){
     const nameColumn = document.createElement("td")
     const cpfColumn = document.createElement("td")
     const departmentColumn = document.createElement("td")
+    const acoesColumn = document.createElement("td")
+
+    const btnDelete = document.createElement("button")
+    btnDelete.classList.add("btn-info")
+    btnDelete.innerHTML = '<img src="../IMAGES/trash.svg"></img>';
+    btnDelete.addEventListener("click", () => remover(id,name,row))
+    acoesColumn.appendChild(btnDelete)
+
     
 
     row.setAttribute("class","professor-row")
@@ -35,6 +54,7 @@ function createRow({id,name,cpf,department}){
     row.appendChild(nameColumn)
     row.appendChild(cpfColumn)
     row.appendChild(departmentColumn)
+    row.appendChild(acoesColumn)
 
     resultContainer.appendChild(row)
 }
