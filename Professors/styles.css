@@ -10,16 +10,27 @@ body{
     color: white;
 }
 
+.column-title{
+    text-align: center;
+}
+
+.column-subtitle-2{
+    padding: 0;
+    text-align: left;
+}
+.column-subtitle-1{
+    padding: 0;
+    text-align: right;
+}
+
 .nav-link{
     color: black;
 }
-
 
 #content{
     padding: 20px 10%;
     min-height: 750px;
 }
-
 
 .title-image{
 }

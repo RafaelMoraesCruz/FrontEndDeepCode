@@ -1,5 +1,5 @@
 const department = document.getElementById("department")
-const resultContainer =  document.getElementById('departamentsList')
+const resultContainer =  document.getElementById('departmentsList')
 
 document.addEventListener("load", search)
 
@@ -16,7 +16,7 @@ function search() {
         showAll
     }}
 
-function showAll(){
+function showAllDepartments(){
     fetch("http://localhost:8080/departments")
     .then(response => response.json())
     .then(quotes => {
@@ -29,7 +29,7 @@ function showAll(){
 
 function renderTable( quotes ){
     let rows = quotes.map((quote) => {
-        return `<div class="col-lg-3 departments-cards">id: ${quote.id}<br>department: ${quote.name}</div>`;
+        return `<tr class="department-row"><td>${quote.id}</td><td>${quote.name}</td></tr>`;
     });
     return `<div class="row">${rows.join("")}</div>`;
 }

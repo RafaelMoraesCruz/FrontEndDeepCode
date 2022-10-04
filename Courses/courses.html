@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="../style.css" />
   </head>
-  <body>
+  <body onload="showAllCourses()">
     <section class="colored-section" id="navbar">
       <!-- Nav Bar -->
       <div class="container-fluid">
@@ -66,21 +66,36 @@
       <div class="row h-25">
         <div class="row column-title col-lg-4">
           <div class="column-subtitle-1 col-lg-8">
-            <input type="text" class="form-control" placeholder="department" aria-label="department">
+            <input type="text" class="form-control" placeholder="course" aria-label="course">
           </div>
           <div class="column-subtitle-2 col-lg-4">
             <button type="button" class="btn Search btn-light">Search</button>
           </div>
         </div>
         <div class="column-title col-lg-4">
-          <button type="button" class="btn btn-light">Create department</button>
+          <button type="button" class="btn btn-light">Create course</button>
         </div>
         <div class="column-title col-lg-4">
-          <button type="button" class="btn btn-light">Delete all departments</button>
+          <button type="button" class="btn btn-light">Delete all courses</button>
         </div>
       </div>
     </section>
+
+    <section id="coursesContent">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Course</th>
+          </tr>
+        </thead>
+        <tbody id="coursesList">
+          
+        </tbody>
+      </table>
+    </section>
     
+    <script src="courses.js"></script>
     <footer class="colored-section" id="footer">
         <div class="media">
           <svg
