@@ -80,10 +80,12 @@
           </div>
         </div>
         <div class="column-title col-lg-4">
-          <button type="button" class="btn btn-light">Create professor</button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form-modal">
+            Create professor
+          </button>
         </div>
         <div class="column-title col-lg-4">
-          <button type="button" class="btn btn-light">Delete all professors</button>
+          <button type="button" class="btn btn-primary" onclick="removeAllDepartments()">Delete all departments (not working yet)</button>
         </div>
       </div>
     </section>
@@ -160,6 +162,37 @@
         © Copyright <a href="https://github.com/RafaelMoraesCruz">RG</a>
       </p>
     </footer>
+
+        <!-- Modal -->
+      <div class="modal fade" id="form-modal" tabindex="-1" aria-labelledby="form-modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Create professor</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>Name</p>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Professor" aria-label="Professor" id="input-name">
+              </div>
+              <p>cpf</p>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="CPF" aria-label="CPF" id="input-cpf">
+              </div>
+              <p>department id</p>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="department id" aria-label="department id" id="input-department">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="btn-create-professor" onclick="addProfessor()">Save professor</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     <script src="professors.js"></script>
   </body>
 </html>

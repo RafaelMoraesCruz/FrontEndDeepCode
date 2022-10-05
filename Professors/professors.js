@@ -1,5 +1,10 @@
 const table = document.getElementById("professor")
 const resultContainer =  document.getElementById('professorsList')
+const inputName = document.getElementById("input-name")
+const inputCPF = document.getElementById("input-cpf")
+const inputDepartmentId = document.getElementById("input-department")
+
+const btnSalvar = document.getElementById("btn-create-department")
 
 async function showAllProfessors(){
     const response = await fetch("http://localhost:8080/professors")
@@ -14,6 +19,30 @@ async function showAllProfessors(){
     }
 }
 
+async function addProfessor(){
+    const name = inputName.value.trim();
+    const cpf = inputCPF.value.trim();
+    const departmentId = inputDepartmentId.value.trim();
+    if (name){
+        const response = await fetch("http://localhost:8080/professors", 
+        {method:"POST",
+        headers: {
+            "content-type": "application/json"
+        },
+        body: JSON.stringify({
+            cpf: cpf,
+            departmentId: departmentId,
+            name: name
+        })},)
+        if (response.ok){
+            const department = await response.json();
+            createRow(department)
+            window.location.reload();
+        }
+    }
+    window.location.reload();
+}
+
 async function remover(id,name, row){
     const result = confirm("Você deseja remover o professor: " +name)
     if (result){
@@ -24,8 +53,6 @@ async function remover(id,name, row){
         }
     }
 }
-
-
 
 function createRow({id,name,cpf,department}){
     const row = document.createElement("tr")

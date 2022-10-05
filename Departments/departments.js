@@ -1,6 +1,9 @@
 const table = document.getElementById("department")
 const resultContainer =  document.getElementById('departmentsList')
 
+const inputName = document.getElementById("input-name")
+const btnSalvar = document.getElementById("btn-create-department")
+
 async function showAllDepartments(){
     const response = await fetch("http://localhost:8080/departments")
     if(response.ok){
@@ -14,18 +17,49 @@ async function showAllDepartments(){
     }
 }
 
+async function addDepartment(){
+    const name = inputName.value.trim();
+    if (name){
+        const response = await fetch("http://localhost:8080/departments", 
+        {method:"POST",
+        headers: {
+            "content-type": "application/json"
+        },
+        body: JSON.stringify({
+            name: name
+        })},)
+        if (response.ok){
+            const department = await response.json();
+            createRow(department)
+            window.location.reload();
+        }
+    }
+    window.location.reload();
+}
+
 async function remover(id,name, row){
-    const result = confirm("Você deseja remover o curso de" +name)
+    const result = confirm("Você deseja remover o curso de" +name + "?")
     if (result){
         const response = await fetch("http://localhost:8080/departments"+"/"+id, {method:"DELETE"})
         if (response.ok){
             resultContainer.removeChild(row)
             window.location.reload();
+        } else if (response.bad_request){
+            alert("Professor in department, please delete the professor first!!")
         }
     }
 }
 
-
+async function removeAllDepartments(){
+    const result = confirm("Are you sure, you want to REMOVE ALL departments?")
+    if (result){
+        const response = await fetch("http://localhost:8080/departments", {method:"DELETE"})
+        if (response.ok){
+            resultContainer.innerHTML = ""
+            window.location.reload();
+        }
+    }
+}
 
 function createRow({id,name} ){
     const row = document.createElement("tr")

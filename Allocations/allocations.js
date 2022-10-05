@@ -25,8 +25,6 @@ async function remover(id,row){
     }
 }
 
-
-
 function createRow({id,professor,course,day,start,end}){
     const row = document.createElement("tr")
     const idColumn = document.createElement("td")

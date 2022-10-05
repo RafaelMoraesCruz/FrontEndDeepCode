@@ -80,10 +80,12 @@
           </div>
         </div>
         <div class="column-title col-lg-4">
-          <button type="button" class="btn btn-light">Create department</button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form-modal">
+            Create department
+          </button>
         </div>
         <div class="column-title col-lg-4">
-          <button type="button" class="btn btn-light">Delete all departments</button>
+          <button type="button" class="btn btn-primary" onclick="removeAllDepartments()">Delete all departments</button>
         </div>
       </div>
     </section>
@@ -157,6 +159,29 @@
         © Copyright <a href="https://github.com/RafaelMoraesCruz">RG</a>
       </p>
     </footer>
+
+    <!-- Modal -->
+    <div class="modal fade" id="form-modal" tabindex="-1" aria-labelledby="form-modalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Create department</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Name of the department</p>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Department" aria-label="Department" id="input-name">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="btn-create-department" onclick="addDepartment()" onkeypress="">Save Department</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="departments.js"></script>
   </body>
 </html>
