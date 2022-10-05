@@ -41,8 +41,6 @@ function createRow({id,name,cpf,department}){
     btnDelete.addEventListener("click", () => remover(id,name,row))
     acoesColumn.appendChild(btnDelete)
 
-    
-
     row.setAttribute("class","professor-row")
     idColumn.setAttribute("scope","row")
     idColumn.textContent = id

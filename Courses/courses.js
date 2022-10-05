@@ -38,7 +38,6 @@ function createRow({id,name}){
     btnDelete.innerHTML = '<img src="../IMAGES/trash.svg"></img>';
     btnDelete.addEventListener("click", () => remover(id,name,row))
     
-
     row.setAttribute("class","course-row")
     idColumn.setAttribute("scope","row")
     idColumn.textContent = id
