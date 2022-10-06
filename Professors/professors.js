@@ -54,6 +54,17 @@ async function remover(id,name, row){
     }
 }
 
+async function removeAllProfessors(){
+    const result = confirm("Are you sure, you want to REMOVE ALL professors?")
+    if (result){
+        const response = await fetch("http://localhost:8080/professors", {method:"DELETE"})
+        if (response.ok){
+            resultContainer.innerHTML = ""
+            window.location.reload();
+        }
+    }
+}
+
 function createRow({id,name,cpf,department}){
     const row = document.createElement("tr")
     const idColumn = document.createElement("td")

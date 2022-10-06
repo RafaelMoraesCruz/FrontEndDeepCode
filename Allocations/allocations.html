@@ -74,10 +74,12 @@
           </div>
         </div>
         <div class="column-title col-lg-4">
-          <button type="button" class="btn btn-light">Create allocation</button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form-modal">
+            Create Allocation (bug formato horário)
+          </button>
         </div>
         <div class="column-title col-lg-4">
-          <button type="button" class="btn btn-light">Delete all allocations</button>
+          <button type="button" class="btn btn-primary" onclick="deleteAllAllocations()">Delete all allocations</button>
         </div>
       </div>
     </section>
@@ -153,6 +155,44 @@
         </div>
         <p class="copyright">© Copyright <a href="https://github.com/RafaelMoraesCruz">RG</a></p>
       </footer>
+
+              <!-- Modal -->
+              <div class="modal fade" id="form-modal" tabindex="-1" aria-labelledby="form-modalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Create allocation</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>course Id</p>
+                      <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="CourseId" aria-label="courseId" id="input-courseId">
+                      </div>
+                      <p>day</p>
+                      <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="day" aria-label="day" id="input-day">
+                      </div>
+                      <p>professor Id</p>
+                      <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="professor Id" aria-label="professor Id" id="input-professorId">
+                      </div>
+                      <p>start</p>
+                      <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="start" aria-label="start" id="input-start">
+                      </div>
+                      <p>end</p>
+                      <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="end" aria-label="end" id="input-end">
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" id="btn-create-allocation" onclick="addAllocation()">Save Allocation</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
       <script src="allocations.js"></script>
   </body>

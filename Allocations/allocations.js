@@ -1,5 +1,11 @@
 const table = document.getElementById("allocation")
 const resultContainer =  document.getElementById('allocationsList')
+const inputCourseId =  document.getElementById('input-courseId')
+const inputDay =  document.getElementById('input-day')
+const inputProfessorId =  document.getElementById('input-professorId')
+const inputStart =  document.getElementById('input-start')
+const inputEnd =  document.getElementById('input-end')
+
 
 async function showAllAllocations(){
     const response = await fetch("http://localhost:8080/allocations")
@@ -14,12 +20,49 @@ async function showAllAllocations(){
     }
 }
 
+async function addAllocation(){
+    const courseId = inputCourseId.value.trim();
+    const day = inputDay.value.trim();
+    const professorId = inputProfessorId.value.trim();
+    const start = inputStart.value.trim();
+    const end = inputEnd.value.trim();
+    const response = await fetch("http://localhost:8080/allocations", 
+    {method:"POST",
+    headers: {
+        "content-type": "application/json"
+    },
+    body: JSON.stringify({
+        courseId: courseId,
+        day: day,
+        end: end,
+        professorId: professorId,
+        start: start,
+    })},)
+    if (response.ok){
+        const allocation = await response.json();
+        createRow(allocation)
+        window.location.reload();
+    }
+    window.location.reload();
+}
+
 async function remover(id,row){
     const result = confirm("Você deseja remover a allocação? id=" +id)
     if (result){
         const response = await fetch("http://localhost:8080/allocations"+"/"+id, {method:"DELETE"})
         if (response.ok){
             resultContainer.removeChild(row)
+            window.location.reload();
+        }
+    }
+}
+
+async function deleteAllAllocations(){
+    const result = confirm("Are you sure, you want to REMOVE ALL allocations?")
+    if (result){
+        const response = await fetch("http://localhost:8080/allocations", {method:"DELETE"})
+        if (response.ok){
+            resultContainer.innerHTML = ""
             window.location.reload();
         }
     }
