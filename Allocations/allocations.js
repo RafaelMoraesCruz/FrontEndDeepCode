@@ -92,6 +92,7 @@ function createRow({id,professor,course,day,start,end}){
     dayColumn.textContent = day
     startColumn.textContent = start.substring(0,5)
     endColumn.textContent = end.substring(0,5)
+    acoesColumn.setAttribute("class", "acoes-column")
     acoesColumn.appendChild(btnDelete)
 
     row.appendChild(idColumn)

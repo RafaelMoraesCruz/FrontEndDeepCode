@@ -77,6 +77,7 @@ function createRow({id,name} ){
     idColumn.textContent = id
     nameColumn.textContent = name
 
+    acoesColumn.setAttribute("class", "acoes-column")
     acoesColumn.appendChild(btnDelete)
 
     row.appendChild(idColumn)

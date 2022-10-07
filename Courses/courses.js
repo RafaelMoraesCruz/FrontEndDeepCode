@@ -74,7 +74,8 @@ function createRow({id,name}){
     idColumn.setAttribute("scope","row")
     idColumn.textContent = id
     courseColumn.textContent = name
-   
+
+    acoesColumn.setAttribute("class", "acoes-column")
     acoesColumn.appendChild(btnDelete)
 
     row.appendChild(idColumn)

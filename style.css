@@ -5,3 +5,7 @@ h1{
 .navbar{
     font-family: 'Montserrat', sans-serif;
 }
+
+.acoes-column{
+    text-align: right;
+}

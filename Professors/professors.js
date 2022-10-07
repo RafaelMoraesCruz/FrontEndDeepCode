@@ -77,6 +77,7 @@ function createRow({id,name,cpf,department}){
     btnDelete.classList.add("btn-info")
     btnDelete.innerHTML = '<img src="../IMAGES/trash.svg"></img>';
     btnDelete.addEventListener("click", () => remover(id,name,row))
+    acoesColumn.setAttribute("class", "acoes-column")
     acoesColumn.appendChild(btnDelete)
 
     row.setAttribute("class","professor-row")
