@@ -19,6 +19,21 @@ async function showAllProfessors(){
     }
 }
 
+async function searchProfessors(){
+    resultContainer.innerHTML = ''
+    const professorNameForSearch = document.getElementById('professorNameForSearch')
+    const response = await fetch("http://localhost:8080/professors?name="+professorNameForSearch.value)
+    if(response.ok){
+        const professors = await response.json();
+        if(professors.length > 0){
+            table.removeAttribute("hidden")
+        }
+        professors.forEach((professor) => {
+            createRow(professor);
+        });
+    }
+}
+
 async function addProfessor(){
     const name = inputName.value.trim();
     const cpf = inputCPF.value.trim();
