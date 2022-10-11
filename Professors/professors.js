@@ -3,7 +3,6 @@ const resultContainer =  document.getElementById('professorsList')
 const inputName = document.getElementById("input-name")
 const inputCPF = document.getElementById("input-cpf")
 const inputDepartmentId = document.getElementById("input-department")
-
 const btnSalvar = document.getElementById("btn-create-department")
 
 async function showAllProfessors(){
@@ -18,6 +17,12 @@ async function showAllProfessors(){
         });
     }
 }
+
+document.addEventListener("keypress", function (tecla){
+    if(tecla.which == 13){
+        searchProfessors()
+    }
+})
 
 async function searchProfessors(){
     resultContainer.innerHTML = ''
