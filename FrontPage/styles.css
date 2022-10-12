@@ -11,6 +11,10 @@ img{
     width: 100px;
 }
 
+#weather{
+    text-align: right;
+}
+
 #navbar{
     padding: 20px 10%;
 }
