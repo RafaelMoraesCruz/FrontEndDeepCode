@@ -2,8 +2,8 @@ const table = document.getElementById("professor")
 const resultContainer =  document.getElementById('professorsList')
 const inputName = document.getElementById("input-name")
 const inputCPF = document.getElementById("input-cpf")
-const inputDepartmentId = document.getElementById("input-department")
-const btnSalvar = document.getElementById("btn-create-department")
+const inputDepartmentId = document.getElementById("departmentId")
+const btnSalvar = document.getElementById("btn-create-professor")
 
 async function showAllProfessors(){
     const response = await fetch("http://localhost:8080/professors")
@@ -114,6 +114,25 @@ function createRow({id,name,cpf,department}){
     row.appendChild(acoesColumn)
 
     resultContainer.appendChild(row)
+}
+
+async function showAllDepartments(){
+    inputDepartmentId.innerHTML = ''
+    const response = await fetch("http://localhost:8080/departments")
+    if(response.ok){
+        const departments = await response.json();
+        departments.forEach((department) => {
+            createDepartmentsSelection(department);
+        });
+    }
+}
+
+function createDepartmentsSelection({id, name}){
+    const selection = document.createElement("OPTION")
+    selection.setAttribute("value", id)
+    selection.textContent = name
+
+    inputDepartmentId.appendChild(selection)
 }
 
 showAllProfessors()

@@ -80,7 +80,7 @@
           </div>
         </div>
         <div class="column-title col-lg-4">
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form-modal">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form-modal" onclick="showAllDepartments()">
             Create professor
           </button>
         </div>
@@ -172,7 +172,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <p>Name</p>
+              <p>name</p>
               <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Professor" aria-label="Professor" id="input-name">
               </div>
@@ -180,9 +180,11 @@
               <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="CPF" aria-label="CPF" id="input-cpf">
               </div>
-              <p>department id</p>
+              <p>department</p>
               <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="department id" aria-label="department id" id="input-department">
+                <select id="departmentId" name="departmentId" class="form-select" aria-label="Department">
+
+                </select>
               </div>
             </div>
             <div class="modal-footer">
