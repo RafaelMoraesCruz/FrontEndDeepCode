@@ -74,7 +74,7 @@
           </div>
         </div>
         <div class="column-title col-lg-4">
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form-modal" onclick="showAllcourses()">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form-modal" onclick="showAllcourses(),showAllProfessors()" >
             Create Allocation
           </button>
         </div>
@@ -183,9 +183,11 @@
                           <option value="SUNDAY">sunday</option>
                         </select>
                       </div>
-                      <p>professor Id</p>
+                      <p>professor</p>
                       <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="professor Id" aria-label="professor Id" id="input-professorId">
+                        <select type="number" class="form-select" placeholder="professor" aria-label="professor" id="input-professorId">
+
+                        </select>
                       </div>
                       <p>start</p>
                       <div class="input-group mb-3">

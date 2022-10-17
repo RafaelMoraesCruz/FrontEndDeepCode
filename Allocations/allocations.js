@@ -20,6 +20,26 @@ async function showAllAllocations(){
     }
 }
 
+async function showAllcourses(){
+    inputCourseId.innerHTML = ''
+    const response = await fetch("http://localhost:8080/courses")
+    if(response.ok){
+        const courses = await response.json();
+        courses.forEach((course) => {
+            createCourseSelection(course);
+        });
+    }
+}
+
+function createCourseSelection({id,name}){
+    const option = document.createElement("OPTION")
+    option.setAttribute("value",id)
+    option.innerText = name
+
+    inputCourseId.appendChild(option)
+    
+}
+
 async function addAllocation(){
     const courseId = inputCourseId.value.trim();
     const day = inputDay.value.trim();
@@ -106,24 +126,22 @@ function createRow({id,professor,course,day,start,end}){
     resultContainer.appendChild(row)
 }
 
-async function showAllcourses(){
-    inputCourseId.innerHTML = ''
-    const response = await fetch("http://localhost:8080/courses")
+async function showAllProfessors(){
+    const response = await fetch("http://localhost:8080/professors")
     if(response.ok){
-        const courses = await response.json();
-        courses.forEach((course) => {
-            createCourseSelection(course);
+        const professors = await response.json();
+        professors.forEach((professor) => {
+            createSelection(professor);
         });
     }
 }
 
-function createCourseSelection({id,name}){
-    const option = document.createElement("OPTION")
-    option.setAttribute("value",id)
-    option.innerText = name
+function createSelection({id,name}){
+    const selection = document.createElement("OPTION")
+    selection.setAttribute("value", id)
+    selection.innerText = name
 
-    inputCourseId.appendChild(option)
-    
+    inputProfessorId.appendChild(selection)
 }
 
 showAllAllocations()
