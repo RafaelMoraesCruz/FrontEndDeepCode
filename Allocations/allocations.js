@@ -106,4 +106,24 @@ function createRow({id,professor,course,day,start,end}){
     resultContainer.appendChild(row)
 }
 
+async function showAllcourses(){
+    inputCourseId.innerHTML = ''
+    const response = await fetch("http://localhost:8080/courses")
+    if(response.ok){
+        const courses = await response.json();
+        courses.forEach((course) => {
+            createCourseSelection(course);
+        });
+    }
+}
+
+function createCourseSelection({id,name}){
+    const option = document.createElement("OPTION")
+    option.setAttribute("value",id)
+    option.innerText = name
+
+    inputCourseId.appendChild(option)
+    
+}
+
 showAllAllocations()

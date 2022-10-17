@@ -74,8 +74,8 @@
           </div>
         </div>
         <div class="column-title col-lg-4">
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form-modal">
-            Create Allocation (bug formato horário)
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form-modal" onclick="showAllcourses()">
+            Create Allocation
           </button>
         </div>
         <div class="column-title col-lg-4">
@@ -165,13 +165,23 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <p>course Id</p>
+                      <p>course</p>
                       <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="CourseId" aria-label="courseId" id="input-courseId">
+                        <select type="number" class="form-select" placeholder="Course" aria-label="courseId" id="input-courseId">
+                        
+                        </select>
                       </div>
                       <p>day</p>
                       <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="day" aria-label="day" id="input-day">
+                        <select type="text" class="form-select" placeholder="day" aria-label="day" id="input-day">
+                          <option value="MONDAY">monday</option>
+                          <option value="TUESDAY">tuesday</option>
+                          <option value="WEDNESDAY">wednesday</option>
+                          <option value="THURSDAY">thursday</option>
+                          <option value="FRIDAY">friday</option>
+                          <option value="SATURDAY">saturday</option>
+                          <option value="SUNDAY">sunday</option>
+                        </select>
                       </div>
                       <p>professor Id</p>
                       <div class="input-group mb-3">
