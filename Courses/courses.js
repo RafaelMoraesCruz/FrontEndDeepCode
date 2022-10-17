@@ -4,6 +4,12 @@ const resultContainer =  document.getElementById('coursesList')
 const inputName = document.getElementById("input-name")
 const btnSalvar = document.getElementById("btn-create-course")
 
+document.addEventListener("keypress", function (tecla){
+    if(tecla.which == 13){
+        findByName()
+    }
+})
+
 async function showAllcourses(){
     const response = await fetch("http://localhost:8080/courses")
     if(response.ok){
@@ -11,6 +17,18 @@ async function showAllcourses(){
         if(courses.length > 0){
             table.removeAttribute("hidden")
         }
+        courses.forEach((course) => {
+            createRow(course);
+        });
+    }
+}
+
+async function findByName(){
+    resultContainer.innerHTML = ''
+    const inputNameValue = document.getElementById('courseSearch').value
+    const response = await fetch("http://localhost:8080/courses?name="+inputNameValue)
+    if(response.ok){
+        const courses = await response.json();
         courses.forEach((course) => {
             createRow(course);
         });
