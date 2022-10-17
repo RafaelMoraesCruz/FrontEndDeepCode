@@ -35,6 +35,32 @@ async function findByName(){
     }
 }
 
+function createRow({id,name}){
+    const row = document.createElement("tr")
+    const idColumn = document.createElement("td")
+    const courseColumn = document.createElement("td")
+    const acoesColumn = document.createElement("td")
+
+    const btnDelete = document.createElement("button")
+    btnDelete.classList.add("btn-info")
+    btnDelete.innerHTML = '<img src="../IMAGES/trash.svg"></img>';
+    btnDelete.addEventListener("click", () => remover(id,name,row))
+    
+    row.setAttribute("class","course-row")
+    idColumn.setAttribute("scope","row")
+    idColumn.textContent = id
+    courseColumn.textContent = name
+
+    acoesColumn.setAttribute("class", "acoes-column")
+    acoesColumn.appendChild(btnDelete)
+
+    row.appendChild(idColumn)
+    row.appendChild(courseColumn)
+    row.appendChild(acoesColumn)
+
+    resultContainer.appendChild(row)
+}
+
 async function addCourse(){
     const name = inputName.value.trim();
     if (name){
@@ -75,32 +101,6 @@ async function removeAllCourses(){
             window.location.reload();
         }
     }
-}
-
-function createRow({id,name}){
-    const row = document.createElement("tr")
-    const idColumn = document.createElement("td")
-    const courseColumn = document.createElement("td")
-    const acoesColumn = document.createElement("td")
-
-    const btnDelete = document.createElement("button")
-    btnDelete.classList.add("btn-info")
-    btnDelete.innerHTML = '<img src="../IMAGES/trash.svg"></img>';
-    btnDelete.addEventListener("click", () => remover(id,name,row))
-    
-    row.setAttribute("class","course-row")
-    idColumn.setAttribute("scope","row")
-    idColumn.textContent = id
-    courseColumn.textContent = name
-
-    acoesColumn.setAttribute("class", "acoes-column")
-    acoesColumn.appendChild(btnDelete)
-
-    row.appendChild(idColumn)
-    row.appendChild(courseColumn)
-    row.appendChild(acoesColumn)
-
-    resultContainer.appendChild(row)
 }
 
 showAllcourses()

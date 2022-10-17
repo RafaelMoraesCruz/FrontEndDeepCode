@@ -17,6 +17,24 @@ async function showAllDepartments(){
     }
 }
 
+document.addEventListener("keypress", function (tecla){
+    if(tecla.which == 13){
+        findByNameContainning()
+    }
+})
+
+async function findByNameContainning(){
+    resultContainer.innerHTML = ''
+    const departmentNameForSearch = document.getElementById('departmentNameForSearch').value
+    const response = await fetch('http://localhost:8080/departments?name='+departmentNameForSearch)
+    if(response.ok){
+        const departments = await response.json();
+        departments.forEach((department) => {
+            createRow(department);
+        });
+    }
+}
+
 async function addDepartment(){
     const name = inputName.value.trim();
     if (name){
