@@ -3,11 +3,9 @@ const resultContainer =  document.getElementById('coursesList')
 
 const inputName = document.getElementById("input-name")
 const btnSalvar = document.getElementById("btn-create-course")
-inputNameUpdate = document.getElementById('input-name-update')
+const inputNameUpdate = document.getElementById('input-name-update')
 
 let actualId = 0
-
-
 
 async function showAllcourses(){
     const response = await fetch("http://localhost:8080/courses")
@@ -95,7 +93,6 @@ function createRow({id,name}){
     
     resultContainer.appendChild(row)
 }
-
 
 async function updateCourse(){
     const name = inputNameUpdate.value.trim();

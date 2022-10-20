@@ -3,6 +3,8 @@ const resultContainer =  document.getElementById('departmentsList')
 
 const inputName = document.getElementById("input-name")
 const btnSalvar = document.getElementById("btn-create-department")
+const inputNameUpdate = document.getElementById('input-name-update')
+
 
 async function showAllDepartments(){
     const response = await fetch("http://localhost:8080/departments")
@@ -55,6 +57,28 @@ async function addDepartment(){
     window.location.reload();
 }
 
+async function updateCourse(){
+    const name = inputNameUpdate.value.trim();
+    if (name){
+        console.log(actualId)
+        const response = await fetch("http://localhost:8080/departments/"+actualId,
+        {method:"PUT",
+        headers: {
+            "content-type": "application/json"
+        },
+        body: JSON.stringify({
+            name: name
+        })},)
+    }
+    window.location.reload()
+    // window.location.reload();
+}
+
+function openUpdateModal(id,name){
+    actualId = id
+    inputNameUpdate.value = name
+}
+
 async function remover(id,name, row){
     const result = confirm("Você deseja remover o curso de" +name + "?")
     if (result){
@@ -71,7 +95,7 @@ async function remover(id,name, row){
 async function removeAllDepartments(){
     const result = confirm("Are you sure, you want to REMOVE ALL departments?")
     if (result){
-        const response = await fetch("http://localhost:8080/departments", {method:"DELETE"})
+        const response = await fetch("http://localhost:8080/departments"+actualId, {method:"DELETE"})
         if (response.ok){
             resultContainer.innerHTML = ""
             window.location.reload();
@@ -81,7 +105,7 @@ async function removeAllDepartments(){
 
 function createRow({id,name} ){
     const row = document.createElement("tr")
-    const idColumn = document.createElement("th")
+    const idColumn = document.createElement("td")
     const nameColumn = document.createElement("td")
     const acoesColumn = document.createElement("td")
 
@@ -93,6 +117,9 @@ function createRow({id,name} ){
     const btnEdit = document.createElement("button")
     btnEdit.classList.add("btn-info")
     btnEdit.innerHTML = '<img src="../IMAGES/edit.svg"></img>';
+    btnEdit.setAttribute('data-bs-toggle',"modal")
+    btnEdit.setAttribute('data-bs-target',"#form-modal-update")
+    btnEdit.addEventListener('click', () => openUpdateModal(id,name))
 
     row.setAttribute("class","department-row")
     idColumn.setAttribute("scope","row")

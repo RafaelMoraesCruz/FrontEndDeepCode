@@ -169,7 +169,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <p>Name of the department</p>
+            <p>department</p>
             <div class="input-group mb-3">
               <input type="text" class="form-control" placeholder="Department" aria-label="Department" id="input-name">
             </div>
@@ -181,6 +181,28 @@
         </div>
       </div>
     </div>
+
+        <!-- Modal update -->
+        <div class="modal fade" id="form-modal-update" tabindex="-1" aria-labelledby="form-modalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabelUpdate">Update department</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>department</p>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="Department" aria-label="Department" id="input-name-update">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btn-update-department" onclick="updateCourse()">Update department</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
     <script src="departments.js"></script>
   </body>
