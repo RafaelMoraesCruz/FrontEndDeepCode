@@ -14,9 +14,7 @@ function createLine(city){
     const situationLine = document.createElement("p")
 
     nameLine.innerHTML = `<strong>name:</strong> ${city.name}`
-
-    tempLine.innerHTML = `<strong>temperature:</strong> ${city.main.temp}ºC`
-
+    tempLine.innerHTML = `<strong>temperature:</strong> ${Math.round(city.main.temp)}ºC`
     situationLine.innerHTML = `<strong>situation:</strong> ${city.weather[0].main}` 
 
     resultContainer.appendChild(nameLine)
