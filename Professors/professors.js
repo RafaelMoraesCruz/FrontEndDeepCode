@@ -97,8 +97,14 @@ function createRow({id,name,cpf,department}){
     btnDelete.classList.add("btn-info")
     btnDelete.innerHTML = '<img src="../IMAGES/trash.svg"></img>';
     btnDelete.addEventListener("click", () => remover(id,name,row))
+
+    const btnEdit = document.createElement("button")
+    btnEdit.classList.add("btn-info")
+    btnEdit.innerHTML = '<img src="../IMAGES/edit.svg"></img>';
+
     acoesColumn.setAttribute("class", "acoes-column")
     acoesColumn.appendChild(btnDelete)
+    acoesColumn.appendChild(btnEdit)
 
     row.setAttribute("class","professor-row")
     idColumn.setAttribute("scope","row")

@@ -153,7 +153,7 @@
         <p class="copyright">© Copyright Equipe 3</p>
       </footer>
 
-          <!-- Modal -->
+          <!-- Modal Create-->
       <div class="modal fade" id="form-modal" tabindex="-1" aria-labelledby="form-modalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -174,6 +174,28 @@
           </div>
         </div>
       </div>
+
+          <!-- Modal Create-->
+          <div class="modal fade" id="form-modal-update" tabindex="-1" aria-labelledby="form-modalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabelUpdate">update course</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>Name of the course</p>
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Course" aria-label="Course" id="input-name-update">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" id="btn-update-course" onclick="updateCourse()">update course</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
       <script src="courses.js"></script>
   </body>

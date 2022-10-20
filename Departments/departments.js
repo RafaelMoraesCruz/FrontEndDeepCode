@@ -90,6 +90,10 @@ function createRow({id,name} ){
     btnDelete.innerHTML = '<img src="../IMAGES/trash.svg"></img>';
     btnDelete.addEventListener("click", () => remover(id,name,row))
 
+    const btnEdit = document.createElement("button")
+    btnEdit.classList.add("btn-info")
+    btnEdit.innerHTML = '<img src="../IMAGES/edit.svg"></img>';
+
     row.setAttribute("class","department-row")
     idColumn.setAttribute("scope","row")
     idColumn.textContent = id
@@ -97,6 +101,7 @@ function createRow({id,name} ){
 
     acoesColumn.setAttribute("class", "acoes-column")
     acoesColumn.appendChild(btnDelete)
+    acoesColumn.appendChild(btnEdit)
 
     row.appendChild(idColumn)
     row.appendChild(nameColumn)
