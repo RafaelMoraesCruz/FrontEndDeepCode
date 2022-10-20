@@ -182,7 +182,7 @@
               </div>
               <p>department</p>
               <div class="input-group mb-3">
-                <select id="departmentId" name="departmentId" class="form-select" aria-label="Department">
+                <select id="departmentIdC" name="departmentIdC" class="form-select" aria-label="Department">
 
                 </select>
               </div>
@@ -190,6 +190,37 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary" id="btn-create-professor" onclick="addProfessor()">Save professor</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <!-- Modal update -->
+      <div class="modal fade" id="form-modal-update" tabindex="-1" aria-labelledby="form-modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabelUpdate">Update professor</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>name</p>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Professor" aria-label="Professor" id="input-name-update">
+              </div>
+              <p>cpf</p>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="CPF" aria-label="CPF" id="input-cpf-update">
+              </div>
+              <p>department</p>
+              <div class="input-group mb-3">
+                <select id="departmentIdUpdate" name="departmentId" class="form-select" aria-label="Department">
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="btn-update-professor" onclick="updateProfessor()">Update professor</button>
             </div>
           </div>
         </div>
