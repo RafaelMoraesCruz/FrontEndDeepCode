@@ -20,7 +20,6 @@ async function showAllcourses(){
     }
 }
 
-
 async function findByName(){
     resultContainer.innerHTML = ''
     const inputNameValue = document.getElementById('courseSearch').value
@@ -38,7 +37,6 @@ document.addEventListener("keypress", function (tecla){
         findByName()
     }
 })
-
 
 async function addCourse(){
     const name = inputName.value.trim();
