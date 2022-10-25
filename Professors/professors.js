@@ -183,7 +183,7 @@ function createDepartmentsSelectionUpdateModal({id, name}, selectedDepartment){
     selection.textContent = name
     if(id == selectedDepartment.id)
     {
-        selection.setAttribute("selected")
+        selection.setAttribute("selected", true)
     }
     
 
