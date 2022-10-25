@@ -83,10 +83,10 @@ async function remover(id,name, row){
     const result = confirm("Você deseja remover o curso de" +name + "?")
     if (result){
         const response = await fetch("http://localhost:8080/departments"+"/"+id, {method:"DELETE"})
-        if (response.ok){
+        if (response.status == 200){
             resultContainer.removeChild(row)
             window.location.reload();
-        } else if (response.bad_request){
+        } else if (response.status == 400){
             alert("Professor in department, please delete the professor first!!")
         }
     }

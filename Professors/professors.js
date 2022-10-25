@@ -106,7 +106,7 @@ async function openUpdateModal(id,name,cpf,department){
     actualId = id
     inputNameUpdate.value = name
     inputCpfUpdate.value = cpf
-    showAllDepartments()
+    showAllDepartments(department)
     // inputDepartmentUpdate.value = department.id
     // inputDepartmentUpdate.textContent = department.name
 }
@@ -156,7 +156,7 @@ function createRow({id,name,cpf,department}){
     resultContainer.appendChild(row)
 }
 
-async function showAllDepartments(){
+async function showAllDepartments(selectedDepartment){
     inputDepartmentId.innerHTML = ''
     inputDepartmentUpdate.innerHTML= ''
     const response = await fetch("http://localhost:8080/departments")
@@ -164,7 +164,7 @@ async function showAllDepartments(){
         const departments = await response.json();
         departments.forEach((department) => {
             createDepartmentsSelectionCreateModal(department);
-            createDepartmentsSelectionUpdateModal(department);
+            createDepartmentsSelectionUpdateModal(department,selectedDepartment);
         });
     }
 }
@@ -177,10 +177,15 @@ function createDepartmentsSelectionCreateModal({id, name}){
     inputDepartmentId.appendChild(selection)
 }
 
-function createDepartmentsSelectionUpdateModal({id, name}){
+function createDepartmentsSelectionUpdateModal({id, name}, selectedDepartment){
     const selection = document.createElement("OPTION")
     selection.setAttribute("value", id)
     selection.textContent = name
+    if(id == selectedDepartment.id)
+    {
+        selection.setAttribute("selected")
+    }
+    
 
     inputDepartmentUpdate.appendChild(selection)
 }

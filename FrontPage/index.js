@@ -20,7 +20,6 @@ function createLine(city){
     resultContainer.appendChild(nameLine)
     resultContainer.appendChild(tempLine)
     resultContainer.appendChild(situationLine)
-
 }
 
 showWeatherRecife()
