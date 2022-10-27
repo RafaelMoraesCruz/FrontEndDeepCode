@@ -79,6 +79,7 @@ async function updateProfessor(){
     var name = inputNameUpdate.value.trim();
     name = verifyNameSize(name);
     const cpf = inputCpfUpdate.value.trim();
+    cpf
     const department = inputDepartmentUpdate.value
     if (name){
         const response = await fetch("http://localhost:8080/professors/"+actualId,
@@ -210,4 +211,23 @@ function verifyNameSize(name){
     } else{
         return name
     }
+}
+
+
+function fMasc(objeto,mascara) {
+obj=objeto
+masc=mascara
+setTimeout("fMascEx()",1)
+}
+
+function fMascEx() {
+obj.value=masc(obj.value)
+}
+
+function mCPF(cpf){
+cpf=cpf.replace(/\D/g,"")
+cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+cpf=cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
+return cpf
 }
