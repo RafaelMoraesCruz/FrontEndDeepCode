@@ -164,8 +164,10 @@ async function showAllDepartments(selectedDepartment){
         const departments = await response.json();
         departments.forEach((department) => {
             createDepartmentsSelectionCreateModal(department);
+        })
+        departments.forEach((department) => {
             createDepartmentsSelectionUpdateModal(department,selectedDepartment);
-        });
+        })
     }
 }
 
