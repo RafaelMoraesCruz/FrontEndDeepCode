@@ -45,7 +45,8 @@ async function searchProfessors(){
 }
 
 async function addProfessor(){
-    const name = inputName.value.trim();
+    var name = inputName.value.trim();
+    name = verifyNameSize(name);
     const cpf = inputCPF.value.trim();
     const departmentId = inputDepartmentId.value.trim();
     if (name){
@@ -59,11 +60,6 @@ async function addProfessor(){
             departmentId: departmentId,
             name: name
         })},)
-        if (response.ok){
-            const department = await response.json();
-            createRow(department)
-            window.location.reload();
-        }
     }
     window.location.reload();
 }
@@ -80,14 +76,11 @@ async function remover(id,name, row){
 }
 
 async function updateProfessor(){
-    const name = inputNameUpdate.value.trim();
+    var name = inputNameUpdate.value.trim();
+    name = verifyNameSize(name);
     const cpf = inputCpfUpdate.value.trim();
     const department = inputDepartmentUpdate.value
     if (name){
-        // console.log(name)
-        // console.log(cpf)
-        // console.log(department)
-        // console.log(actualId)
         const response = await fetch("http://localhost:8080/professors/"+actualId,
         {method:"PUT",
         headers: {
@@ -208,4 +201,13 @@ function createBtnDelete(){
     btnDelete.classList.add("btn-info")
     btnDelete.innerHTML = '<img src="../IMAGES/trash.svg"></img>';
     return btnDelete
+}
+
+function verifyNameSize(name){
+    name.trim()
+    if(name.length <= 2) {
+        alert("name is too short, not saved")
+    } else{
+        return name
+    }
 }

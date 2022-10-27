@@ -49,11 +49,6 @@ async function addCourse(){
         body: JSON.stringify({
             name: name
         })},)
-        if (response.ok){
-            const course = await response.json();
-            createRow(course)
-            window.location.reload();
-        }
     }
     window.location.reload();
 }

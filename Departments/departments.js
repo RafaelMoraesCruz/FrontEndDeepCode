@@ -48,11 +48,6 @@ async function addDepartment(){
         body: JSON.stringify({
             name: name
         })},)
-        if (response.ok){
-            const department = await response.json();
-            createRow(department)
-            window.location.reload();
-        }
     }
     window.location.reload();
 }

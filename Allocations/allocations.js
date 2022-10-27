@@ -58,11 +58,6 @@ async function addAllocation(){
         professorId: professorId,
         start: start,
     })},)
-    if (response.ok){
-        const allocation = await response.json();
-        createRow(allocation)
-        window.location.reload();
-    }
     window.location.reload();
 }
 
