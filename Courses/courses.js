@@ -90,7 +90,6 @@ function createRow({id,name}){
 async function updateCourse(){
     const name = inputNameUpdate.value.trim();
     if (name){
-        console.log(actualId)
         const response = await fetch("http://localhost:8080/courses/"+actualId,
         {method:"PUT",
         headers: {
@@ -101,7 +100,6 @@ async function updateCourse(){
         })},)
     }
     window.location.reload()
-    // window.location.reload();
 }
 
 function openUpdateModal(id,name){
@@ -110,7 +108,7 @@ function openUpdateModal(id,name){
 }
 
 
-async function remover(id,name,row){
+async function remover(id,name){
     const result = confirm("Do you want to remove " +name + "?")
     if (result){
         const response = await fetch("http://localhost:8080/courses/"+id, {method:"DELETE"})

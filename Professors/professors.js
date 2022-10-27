@@ -205,14 +205,13 @@ function createBtnDelete(){
 }
 
 function verifyNameSize(name){
-    name.trim()
+    name = name.trim()
     if(name.length <= 2) {
         alert("name is too short, not saved")
     } else{
         return name
     }
 }
-
 
 function fMasc(objeto,mascara) {
 obj=objeto
