@@ -72,7 +72,8 @@
           </div>
         </div>
         <div class="column-title col-lg-4">
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form-modal" onclick="showAllcourses(),showAllProfessors()" >
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form-modal"
+          id="createAllocationButton" onclick="showAllcourses()" >
             Create Allocation
           </button>
         </div>
@@ -197,6 +198,54 @@
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                       <button type="button" class="btn btn-primary" id="btn-create-allocation" onclick="addAllocation()">Save Allocation</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Modal -->
+              <div class="modal fade" id="form-modal-update" tabindex="-1" aria-labelledby="form-modalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5">Update allocation</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>course</p>
+                      <div class="input-group mb-3">
+                        <select type="number" class="form-select" placeholder="Course" aria-label="course" id="input-courseId-update">
+                        </select>
+                      </div>
+                      <p>day</p>
+                      <div class="input-group mb-3">
+                        <select type="text" class="form-select" placeholder="day" aria-label="day" id="input-day-update">
+                          <option value="MONDAY">monday</option>
+                          <option value="TUESDAY">tuesday</option>
+                          <option value="WEDNESDAY">wednesday</option>
+                          <option value="THURSDAY">thursday</option>
+                          <option value="FRIDAY">friday</option>
+                          <option value="SATURDAY">saturday</option>
+                          <option value="SUNDAY">sunday</option>
+                        </select>
+                      </div>
+                      <p>professor</p>
+                      <div class="input-group mb-3">
+                        <select type="number" class="form-select" aria-label="professor" id="input-professorId-update">
+                        </select>
+                      </div>
+                      <p>start</p>
+                      <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="start" aria-label="start" id="input-start-update">
+                      </div>
+                      <p>end</p>
+                      <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="end" aria-label="end" id="input-end-update">
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" id="btn-create-allocation-update" onclick="updateAllocation()">Save Allocation</button>
                     </div>
                   </div>
                 </div>

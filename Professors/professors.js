@@ -181,8 +181,6 @@ function createDepartmentsSelectionUpdateModal({id, name}, selectedDepartment){
     {
         selection.setAttribute("selected", true)
     }
-    
-
     inputDepartmentUpdate.appendChild(selection)
 }
 

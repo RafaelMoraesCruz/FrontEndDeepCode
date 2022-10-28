@@ -5,7 +5,16 @@ const inputDay =  document.getElementById('input-day')
 const inputProfessorId =  document.getElementById('input-professorId')
 const inputStart =  document.getElementById('input-start')
 const inputEnd =  document.getElementById('input-end')
+const inputCourseIdUpdate =  document.getElementById('input-courseId-update')
+const inputDayUpdate =  document.getElementById('input-day-update')
+const inputProfessorIdUpdate =  document.getElementById('input-professorId-update')
+const inputStartUpdate =  document.getElementById('input-start-update')
+const inputEndUpdate =  document.getElementById('input-end-update')
+const createAllocationButton = document.getElementById('createAllocationButton')
 
+createAllocationButton.addEventListener('click', showAllProfessors)
+
+let actualId = 0
 
 async function showAllAllocations(){
     const response = await fetch("http://localhost:8080/allocations")
@@ -16,17 +25,6 @@ async function showAllAllocations(){
         }
         allocations.forEach((allocation) => {
             createRow(allocation);
-        });
-    }
-}
-
-async function showAllcourses(){
-    inputCourseId.innerHTML = ''
-    const response = await fetch("http://localhost:8080/courses")
-    if(response.ok){
-        const courses = await response.json();
-        courses.forEach((course) => {
-            createCourseSelection(course);
         });
     }
 }
@@ -58,6 +56,27 @@ async function addAllocation(){
         professorId: professorId,
         start: start,
     })},)
+    window.location.reload();
+}
+
+async function updateProfessor(){
+    var course = inputCourseIdUpdate.value.trim();
+    var day = inputDayUpdate.value.trim();
+    var professor = inputProfessorUpdate.value.trim();
+    var start = inputStartUpdate.value.trim();
+    var end = inputEndUpdate.value.trim();
+        const response = await fetch("http://localhost:8080/professors/"+actualId,
+        {method:"PUT",
+        headers: {
+            "content-type": "application/json"
+        },
+        body: JSON.stringify({
+            course: course,
+            day: day,
+            professor: professor,
+            start: start,
+            end: end
+        })},)
     window.location.reload();
 }
 
@@ -93,15 +112,11 @@ function createRow({id,professor,course,day,start,end}){
     const endColumn = document.createElement("td")
     const acoesColumn = document.createElement("td")
 
-    const btnDelete = document.createElement("button")
-    btnDelete.classList.add("btn-info")
-    btnDelete.innerHTML = '<img src="../IMAGES/trash.svg"></img>';
+    const btnDelete = createBtnDelete()
     btnDelete.addEventListener("click", () => remover(id,row))
 
-    const btnEdit = document.createElement("button")
-    btnEdit.classList.add("btn-info")
-    btnEdit.innerHTML = '<img src="../IMAGES/edit.svg"></img>';
-    
+    const btnEdit = createBtnEdit()
+    btnEdit.addEventListener("click", ()=> openUpdateModal(id, professor,course,day,start,end))
 
     row.setAttribute("class","allocation-row")
     idColumn.setAttribute("scope","row")
@@ -126,22 +141,83 @@ function createRow({id,professor,course,day,start,end}){
     resultContainer.appendChild(row)
 }
 
-async function showAllProfessors(){
+async function showAllProfessors(selectedProfessor){
+    inputProfessorId.innerHTML = ''
+    inputProfessorIdUpdate.innerHTML= ''
     const response = await fetch("http://localhost:8080/professors")
     if(response.ok){
         const professors = await response.json();
         professors.forEach((professor) => {
-            createSelection(professor);
-        });
+            createProfessorsSelectionUpdateModal(professor,selectedProfessor);
+        })
+        professors.forEach((professor) => {
+            createProfessorSelection(professor);
+        })
     }
 }
 
-function createSelection({id,name}){
+async function openUpdateModal(id,professor,course,day,start,end){
+    actualId = id
+    showAllProfessors(professor)
+    // inputCourseIdUpdate.value = course.id
+    inputDayUpdate.value = day
+    inputStartUpdate.value = start
+    inputEndUpdate.value = end
+}
+
+function createProfessorsSelectionUpdateModal({id, name},selectedProfessor){
+    const selection = document.createElement("OPTION")
+    selection.setAttribute("value", id)
+    selection.textContent = name
+    if(id == selectedProfessor.id){
+        selection.setAttribute("selected", true)
+    }
+    inputProfessorIdUpdate.appendChild(selection)
+}
+
+function createProfessorSelection({id,name}){
     const selection = document.createElement("OPTION")
     selection.setAttribute("value", id)
     selection.innerText = name
 
     inputProfessorId.appendChild(selection)
+}
+
+function createBtnEdit(){
+    const btnEdit = document.createElement("button")
+    btnEdit.setAttribute('data-bs-toggle',"modal")
+    btnEdit.setAttribute('data-bs-target',"#form-modal-update")
+    btnEdit.classList.add("btn-info")
+    btnEdit.innerHTML = '<img src="../IMAGES/edit.svg"></img>';
+    return btnEdit
+}
+
+function createBtnDelete(){
+    const btnDelete = document.createElement("button")
+    btnDelete.classList.add("btn-info")
+    btnDelete.innerHTML = '<img src="../IMAGES/trash.svg"></img>';
+    return btnDelete
+}
+
+// async function showAllProfessors(){
+//     const response = await fetch("http://localhost:8080/professors")
+//     if(response.ok){
+//         const professors = await response.json();
+//         professors.forEach((professor) => {
+//             createSelection(professor);
+//         });
+//     }
+// }
+
+async function showAllcourses(){
+    inputCourseId.innerHTML = ''
+    const response = await fetch("http://localhost:8080/courses")
+    if(response.ok){
+        const courses = await response.json();
+        courses.forEach((course) => {
+            createCourseSelection(course);
+        });
+    }
 }
 
 showAllAllocations()
