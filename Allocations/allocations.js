@@ -30,13 +30,43 @@ async function showAllAllocations(){
     }
 }
 
-function createCourseSelection({id,name}){
-    const option = document.createElement("OPTION")
-    option.setAttribute("value",id)
-    option.innerText = name
+function createRow({id,professor,course,day,start,end}){
+    const row = document.createElement("tr")
+    const idColumn = document.createElement("td")
+    const professorColumn = document.createElement("td")
+    const courseColumn = document.createElement("td")
+    const dayColumn = document.createElement("td")
+    const startColumn = document.createElement("td")
+    const endColumn = document.createElement("td")
+    const acoesColumn = document.createElement("td")
 
-    inputCourseId.appendChild(option)
-    
+    const btnDelete = createBtnDelete()
+    btnDelete.addEventListener("click", () => remover(id,row))
+
+    const btnEdit = createBtnEdit()
+    btnEdit.addEventListener("click", ()=> openUpdateModal(id, professor,course,day,start,end))
+
+    row.setAttribute("class","allocation-row")
+    idColumn.setAttribute("scope","row")
+    idColumn.textContent = id
+    professorColumn.textContent = professor.name
+    courseColumn.textContent = course.name
+    dayColumn.textContent = day
+    startColumn.textContent = start.substring(0,5)
+    endColumn.textContent = end.substring(0,5)
+    acoesColumn.setAttribute("class", "acoes-column")
+    acoesColumn.appendChild(btnDelete)
+    acoesColumn.appendChild(btnEdit)
+
+    row.appendChild(idColumn)
+    row.appendChild(professorColumn)
+    row.appendChild(courseColumn)
+    row.appendChild(dayColumn)
+    row.appendChild(startColumn)
+    row.appendChild(endColumn)
+    row.appendChild(acoesColumn)
+
+    resultContainer.appendChild(row)
 }
 
 async function addAllocation(){
@@ -103,45 +133,6 @@ async function deleteAllAllocations(){
     }
 }
 
-function createRow({id,professor,course,day,start,end}){
-    const row = document.createElement("tr")
-    const idColumn = document.createElement("td")
-    const professorColumn = document.createElement("td")
-    const courseColumn = document.createElement("td")
-    const dayColumn = document.createElement("td")
-    const startColumn = document.createElement("td")
-    const endColumn = document.createElement("td")
-    const acoesColumn = document.createElement("td")
-
-    const btnDelete = createBtnDelete()
-    btnDelete.addEventListener("click", () => remover(id,row))
-
-    const btnEdit = createBtnEdit()
-    btnEdit.addEventListener("click", ()=> openUpdateModal(id, professor,course,day,start,end))
-
-    row.setAttribute("class","allocation-row")
-    idColumn.setAttribute("scope","row")
-    idColumn.textContent = id
-    professorColumn.textContent = professor.name
-    courseColumn.textContent = course.name
-    dayColumn.textContent = day
-    startColumn.textContent = start.substring(0,5)
-    endColumn.textContent = end.substring(0,5)
-    acoesColumn.setAttribute("class", "acoes-column")
-    acoesColumn.appendChild(btnDelete)
-    acoesColumn.appendChild(btnEdit)
-
-    row.appendChild(idColumn)
-    row.appendChild(professorColumn)
-    row.appendChild(courseColumn)
-    row.appendChild(dayColumn)
-    row.appendChild(startColumn)
-    row.appendChild(endColumn)
-    row.appendChild(acoesColumn)
-
-    resultContainer.appendChild(row)
-}
-
 async function showAllProfessors(selectedProfessor){
     inputProfessorId.innerHTML = ''
     inputProfessorIdUpdate.innerHTML= ''
@@ -172,7 +163,9 @@ async function showAllCourses(selectedCourse){
     }
 }
 
-async function openUpdateModal(id,professor,course,day,start,end){
+
+
+function openUpdateModal(id,professor,course,day,start,end){
     actualId = id
     showAllProfessors(professor)
     showAllCourses(course)
@@ -180,6 +173,8 @@ async function openUpdateModal(id,professor,course,day,start,end){
     inputStartUpdate.value = start
     inputEndUpdate.value = end
 }
+
+
 
 function createProfessorsSelectionUpdateModal({id, name},selectedProfessor){
     const selection = document.createElement("OPTION")
@@ -190,7 +185,6 @@ function createProfessorsSelectionUpdateModal({id, name},selectedProfessor){
     }
     inputProfessorIdUpdate.appendChild(selection)
 }
-
 
 function createProfessorSelection({id,name}){
     const selection = document.createElement("OPTION")
@@ -211,23 +205,14 @@ function createCoursesSelectionUpdateModal({id, name},selectedCourse){
 }
 
 function createCourseSelection({id,name}){
-        const selection = document.createElement("OPTION")
+    const selection = document.createElement("OPTION")
     selection.setAttribute("value", id)
     selection.innerText = name
 
     inputCourseId.appendChild(selection)
 }
 
-// async function showAllcourses(){
-//     inputCourseId.innerHTML = ''
-//     const response = await fetch("http://localhost:8080/courses")
-//     if(response.ok){
-//         const courses = await response.json();
-//         courses.forEach((course) => {
-//             createCourseSelection(course);
-//         });
-//     }
-// }
+
 
 function createBtnEdit(){
     const btnEdit = document.createElement("button")
