@@ -13,6 +13,7 @@ const inputEndUpdate =  document.getElementById('input-end-update')
 const createAllocationButton = document.getElementById('createAllocationButton')
 
 createAllocationButton.addEventListener('click', showAllProfessors)
+createAllocationButton.addEventListener('click', showAllCourses)
 
 let actualId = 0
 
@@ -59,13 +60,13 @@ async function addAllocation(){
     window.location.reload();
 }
 
-async function updateProfessor(){
+async function updateAllocation(){
     var course = inputCourseIdUpdate.value.trim();
     var day = inputDayUpdate.value.trim();
-    var professor = inputProfessorUpdate.value.trim();
+    var professor = inputProfessorIdUpdate.value.trim();
     var start = inputStartUpdate.value.trim();
     var end = inputEndUpdate.value.trim();
-        const response = await fetch("http://localhost:8080/professors/"+actualId,
+        const response = await fetch("http://localhost:8080/allocations/"+actualId,
         {method:"PUT",
         headers: {
             "content-type": "application/json"
@@ -77,7 +78,7 @@ async function updateProfessor(){
             start: start,
             end: end
         })},)
-    window.location.reload();
+    // window.location.reload();
 }
 
 async function remover(id,row){
@@ -156,10 +157,25 @@ async function showAllProfessors(selectedProfessor){
     }
 }
 
+async function showAllCourses(selectedCourse){
+    inputCourseId.innerHTML = ''
+    inputCourseIdUpdate.innerHTML= ''
+    const response = await fetch("http://localhost:8080/courses")
+    if(response.ok){
+        const courses = await response.json();
+        courses.forEach((course) => {
+            createCoursesSelectionUpdateModal(course,selectedCourse);
+        })
+        courses.forEach((course) => {
+            createCourseSelection(course);
+        })
+    }
+}
+
 async function openUpdateModal(id,professor,course,day,start,end){
     actualId = id
     showAllProfessors(professor)
-    // inputCourseIdUpdate.value = course.id
+    showAllCourses(course)
     inputDayUpdate.value = day
     inputStartUpdate.value = start
     inputEndUpdate.value = end
@@ -175,13 +191,43 @@ function createProfessorsSelectionUpdateModal({id, name},selectedProfessor){
     inputProfessorIdUpdate.appendChild(selection)
 }
 
+
 function createProfessorSelection({id,name}){
     const selection = document.createElement("OPTION")
     selection.setAttribute("value", id)
     selection.innerText = name
-
+    
     inputProfessorId.appendChild(selection)
 }
+
+function createCoursesSelectionUpdateModal({id, name},selectedCourse){
+    const selection = document.createElement("OPTION")
+    selection.setAttribute("value", id)
+    selection.textContent = name
+    if(id == selectedCourse.id){
+        selection.setAttribute("selected", true)
+    }
+    inputCourseIdUpdate.appendChild(selection)
+}
+
+function createCourseSelection({id,name}){
+        const selection = document.createElement("OPTION")
+    selection.setAttribute("value", id)
+    selection.innerText = name
+
+    inputCourseId.appendChild(selection)
+}
+
+// async function showAllcourses(){
+//     inputCourseId.innerHTML = ''
+//     const response = await fetch("http://localhost:8080/courses")
+//     if(response.ok){
+//         const courses = await response.json();
+//         courses.forEach((course) => {
+//             createCourseSelection(course);
+//         });
+//     }
+// }
 
 function createBtnEdit(){
     const btnEdit = document.createElement("button")
@@ -197,27 +243,6 @@ function createBtnDelete(){
     btnDelete.classList.add("btn-info")
     btnDelete.innerHTML = '<img src="../IMAGES/trash.svg"></img>';
     return btnDelete
-}
-
-// async function showAllProfessors(){
-//     const response = await fetch("http://localhost:8080/professors")
-//     if(response.ok){
-//         const professors = await response.json();
-//         professors.forEach((professor) => {
-//             createSelection(professor);
-//         });
-//     }
-// }
-
-async function showAllcourses(){
-    inputCourseId.innerHTML = ''
-    const response = await fetch("http://localhost:8080/courses")
-    if(response.ok){
-        const courses = await response.json();
-        courses.forEach((course) => {
-            createCourseSelection(course);
-        });
-    }
 }
 
 showAllAllocations()

@@ -5,6 +5,7 @@ const inputName = document.getElementById("input-name")
 const btnSalvar = document.getElementById("btn-create-department")
 const inputNameUpdate = document.getElementById('input-name-update')
 
+let actualId = 0
 
 async function showAllDepartments(){
     const response = await fetch("http://localhost:8080/departments")
@@ -52,10 +53,9 @@ async function addDepartment(){
     window.location.reload();
 }
 
-async function updateCourse(){
+async function updateDepartment(){
     const name = inputNameUpdate.value.trim();
     if (name){
-        console.log(actualId)
         const response = await fetch("http://localhost:8080/departments/"+actualId,
         {method:"PUT",
         headers: {
