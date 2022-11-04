@@ -96,22 +96,17 @@ async function updateAllocation(){
     var professor = inputProfessorIdUpdate.value.trim();
     var start = inputStartUpdate.value.trim();
     var end = inputEndUpdate.value.trim();
-    console.log(course)
-    console.log(day)
-    console.log(professor)
-    console.log(start)
-    console.log(end)
     const response = await fetch("http://localhost:8080/allocations/"+actualId,
     {method:"PUT",
     headers: {
         "content-type": "application/json"
     },
     body: JSON.stringify({
-        course: course,
+        courseId: course,
         day: day,
-        professor: professor,
+        end: end,
+        professorId: professor,
         start: start,
-        end: end
     })},)
     window.location.reload();
 }

@@ -101,8 +101,6 @@ async function openUpdateModal(id,name,cpf,department){
     inputNameUpdate.value = name
     inputCpfUpdate.value = cpf
     showAllDepartments(department)
-    // inputDepartmentUpdate.value = department.id
-    // inputDepartmentUpdate.textContent = department.name
 }
 
 async function removeAllProfessors(){
