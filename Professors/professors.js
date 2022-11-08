@@ -47,7 +47,7 @@ async function searchProfessors() {
 async function addProfessor() {
     var name = inputName.value.trim();
     name = verifyNameSize(name);
-    const cpf = inputCPF.value.trim();
+    const cpf = inputCPF.value.trim().replace('.','').replace('-','');
     const departmentId = inputDepartmentId.value.trim();
     if (name) {
         const response = await fetch("http://localhost:8080/professors",
@@ -58,7 +58,7 @@ async function addProfessor() {
                     "content-type": "application/json"
                 },
                 body: JSON.stringify({
-                    cpf: cpf,
+                    cpf: cpf.replace('.','').replace('.','').replace('-',''),
                     departmentId: departmentId,
                     name: name
                 })
@@ -86,8 +86,8 @@ async function remover(id, name, row) {
 async function updateProfessor() {
     var name = inputNameUpdate.value.trim();
     name = verifyNameSize(name);
-    const cpf = inputCpfUpdate.value.trim();
-    cpf
+    const cpf = inputCpfUpdate.value.trim().replace('.','').replace('-','');
+
     const department = inputDepartmentUpdate.value
     if (name) {
         const response = await fetch("http://localhost:8080/professors/" + actualId,
@@ -146,7 +146,7 @@ function createRow({ id, name, cpf, department }) {
     idColumn.setAttribute("scope", "row")
     idColumn.textContent = id
     nameColumn.textContent = name
-    cpfColumn.textContent = cpf
+    cpfColumn.textContent = mCPF(cpf)
     departmentColumn.textContent = department.name
 
     row.appendChild(idColumn)
