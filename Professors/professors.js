@@ -69,7 +69,7 @@ async function addProfessor() {
             alert("Professor create!")
         }
     }
-    window.location.reload();
+    // window.location.reload();
 }
 
 async function remover(id, name, row) {
@@ -223,6 +223,14 @@ function verifyNameSize(name) {
     }
     else {
         return name
+    }
+}
+
+function verifyCpf(cpf){
+    if(cpf.length != 14){
+        alert("Invalid cpf format")
+    } else{
+        return cpf
     }
 }
 

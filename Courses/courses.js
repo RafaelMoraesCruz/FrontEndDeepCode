@@ -39,7 +39,8 @@ document.addEventListener("keypress", function (tecla){
 })
 
 async function addCourse(){
-    const name = inputName.value.trim();
+    var name = inputName.value
+    name = verifyName(name)
     if (name){
         const response = await fetch("http://localhost:8080/courses", 
         {method:"POST",
@@ -48,7 +49,7 @@ async function addCourse(){
         },
         body: JSON.stringify({
             name: name
-        })},)
+        })})
     }
     window.location.reload();
 }
@@ -89,6 +90,7 @@ function createRow({id,name}){
 
 async function updateCourse(){
     const name = inputNameUpdate.value.trim();
+    name = verifyName(name)
     if (name){
         const response = await fetch("http://localhost:8080/courses/"+actualId,
         {method:"PUT",
@@ -126,6 +128,15 @@ async function removeAllCourses(){
             resultContainer.innerHTML = ""
             window.location.reload();
         }
+    }
+}
+
+function verifyName(name){
+    name = name.trim()
+    if(name == '' | name.length < 2){
+        alert('Name is too short')
+    } else{
+        return name
     }
 }
 

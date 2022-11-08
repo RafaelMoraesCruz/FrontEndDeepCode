@@ -39,7 +39,8 @@ async function findByNameContainning(){
 }
 
 async function addDepartment(){
-    const name = inputName.value.trim();
+    var name = inputName.value.trim();
+    name = verifyName(name)
     if (name){
         const response = await fetch("http://localhost:8080/departments", 
         {method:"POST",
@@ -48,13 +49,15 @@ async function addDepartment(){
         },
         body: JSON.stringify({
             name: name
-        })},)
+        })})
+        console.log(response)
     }
     window.location.reload();
 }
 
 async function updateDepartment(){
-    const name = inputNameUpdate.value.trim();
+    var name = inputNameUpdate.value.trim();
+    name = verifyName(name)
     if (name){
         const response = await fetch("http://localhost:8080/departments/"+actualId,
         {method:"PUT",
@@ -129,6 +132,15 @@ function createRow({id,name} ){
     row.appendChild(acoesColumn)
 
     resultContainer.appendChild(row)
+}
+
+function verifyName(name){
+    name = name.trim()
+    if(name == '' | name.length < 2){
+        alert('Name is too short')
+    } else{
+        return name
+    }
 }
 
 showAllDepartments()
