@@ -76,9 +76,12 @@ async function remover(id, name, row) {
     const result = confirm("Would you like remove professor: " + name)
     if (result) {
         const response = await fetch("http://localhost:8080/professors" + "/" + id, { method: "DELETE" })
-        if (response.ok) {
+        if (response.status == 204) {
             resultContainer.removeChild(row)
+            alert("Professor " + name + " successfully removed!")
             window.location.reload();
+        }else{
+            alert("Professor " + name + " have allocation!")
         }
     }
 }
@@ -117,9 +120,11 @@ async function removeAllProfessors() {
     const result = confirm("Are you sure, you want to REMOVE ALL professors?")
     if (result) {
         const response = await fetch("http://localhost:8080/professors", { method: "DELETE" })
-        if (response.ok) {
+        if (response.status == 200) {
             resultContainer.innerHTML = ""
             window.location.reload();
+        }else{
+            alert("Some professors have allocation")
         }
     }
 }

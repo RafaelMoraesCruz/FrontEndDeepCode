@@ -66,7 +66,6 @@ async function updateDepartment(){
         })},)
     }
     window.location.reload()
-    // window.location.reload();
 }
 
 function openUpdateModal(id,name){
