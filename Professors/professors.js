@@ -51,6 +51,7 @@ async function addProfessor() {
     const departmentId = inputDepartmentId.value.trim();
     if (name) {
         const response = await fetch("http://localhost:8080/professors",
+
             {
                 method: "POST",
                 headers: {
@@ -62,12 +63,17 @@ async function addProfessor() {
                     name: name
                 })
             },)
+        if (response.status == 400) {
+            alert("CPF is invalid!")
+        } else {
+            alert("Professor create!")
+        }
     }
     window.location.reload();
 }
 
 async function remover(id, name, row) {
-    const result = confirm("Você deseja remover o professor: " + name)
+    const result = confirm("Would you like remove professor: " + name)
     if (result) {
         const response = await fetch("http://localhost:8080/professors" + "/" + id, { method: "DELETE" })
         if (response.ok) {
@@ -206,9 +212,9 @@ function createBtnDelete() {
 function verifyNameSize(name) {
     name = name.trim()
     if (name.length == 0) {
-        alert("name is empty!")
+        alert("Name is empty!")
     } else if (name.length <= 2) {
-        alert("name is too short, not saved")
+        alert("Name is too short, not saved")
     }
     else {
         return name
