@@ -47,7 +47,7 @@ async function searchProfessors() {
 async function addProfessor() {
     var name = inputName.value.trim();
     name = verifyNameSize(name);
-    const cpf = inputCPF.value.trim().replace('.','').replace('-','');
+    const cpf = inputCPF.value.trim().replace('.','').replace('.','').replace('-','');
     const departmentId = inputDepartmentId.value.trim();
     if (name) {
         const response = await fetch("http://localhost:8080/professors",
@@ -86,7 +86,7 @@ async function remover(id, name, row) {
 async function updateProfessor() {
     var name = inputNameUpdate.value.trim();
     name = verifyNameSize(name);
-    const cpf = inputCpfUpdate.value.trim().replace('.','').replace('-','');
+    const cpf = inputCpfUpdate.value.trim().replace('.','').replace('.','').replace('-','');
 
     const department = inputDepartmentUpdate.value
     if (name) {
@@ -109,7 +109,7 @@ async function updateProfessor() {
 async function openUpdateModal(id, name, cpf, department) {
     actualId = id
     inputNameUpdate.value = name
-    inputCpfUpdate.value = cpf
+    inputCpfUpdate.value = mCPF(cpf)
     showAllDepartments(department)
 }
 
