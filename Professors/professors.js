@@ -47,7 +47,8 @@ async function searchProfessors() {
 async function addProfessor() {
     var name = inputName.value.trim();
     name = verifyNameSize(name);
-    const cpf = inputCPF.value.trim().replace('.','').replace('.','').replace('-','');
+    var cpf = inputCpfUpdate.value.trim()
+    cpf = verifyCpf(cpf).replace('.','').replace('.','').replace('-','');
     const departmentId = inputDepartmentId.value.trim();
     if (name) {
         const response = await fetch("http://localhost:8080/professors",
@@ -89,8 +90,8 @@ async function remover(id, name, row) {
 async function updateProfessor() {
     var name = inputNameUpdate.value.trim();
     name = verifyNameSize(name);
-    const cpf = inputCpfUpdate.value.trim().replace('.','').replace('.','').replace('-','');
-
+    var cpf = inputCpfUpdate.value.trim()
+    cpf = verifyCpf(cpf).replace('.','').replace('.','').replace('-','');
     const department = inputDepartmentUpdate.value
     if (name) {
         const response = await fetch("http://localhost:8080/professors/" + actualId,
