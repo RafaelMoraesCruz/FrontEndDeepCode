@@ -50,6 +50,8 @@ async function addCourse(){
         body: JSON.stringify({
             name: name
         })})
+        verifyResponseAddCourse(response)
+        console.log(response)
     }
     window.location.reload();
 }
@@ -100,6 +102,9 @@ async function updateCourse(){
         body: JSON.stringify({
             name: name
         })},)
+        if (response.status == 404){
+            alert('Error!! try again')
+        }
     }
     window.location.reload()
 }
@@ -133,11 +138,23 @@ async function removeAllCourses(){
 
 function verifyName(name){
     name = name.trim()
-    if(name == '' | name.length < 2){
+    if(name == '' | name.length <= 2){
         alert('Name is too short')
     } else{
         return name
     }
+}
+
+function verifyResponseAddCourse(response){
+    if (response.status == 201){
+    alert("Success")
+} else if (response.status == 400){
+    alert("Name is invalid")
+} else if (response.status == 406){
+    alert('Name already exists in database')
+} else {
+    alert('error 500')
+}
 }
 
 showAllcourses()

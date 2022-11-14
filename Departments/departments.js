@@ -50,7 +50,7 @@ async function addDepartment(){
         body: JSON.stringify({
             name: name
         })})
-        console.log(response)
+        verifyResponseDepartment(response)
     }
     window.location.reload();
 }
@@ -67,6 +67,7 @@ async function updateDepartment(){
         body: JSON.stringify({
             name: name
         })},)
+        verifyResponseDepartment(response)
     }
     window.location.reload()
 }
@@ -137,11 +138,19 @@ function createRow({id,name} ){
 
 function verifyName(name){
     name = name.trim()
-    if(name == '' | name.length < 2){
+    if(name == '' | name.length <= 2){
         alert('Name is too short')
     } else{
         return name
     }
+}
+
+function verifyResponseDepartment(response){
+    if (response.status == 201){
+    alert("Success")
+} else if (response.status == 400){
+    alert("Name is invalid")
+}
 }
 
 showAllDepartments()
