@@ -61,18 +61,9 @@ function createRow({id,name}){
     const idColumn = document.createElement("td")
     const courseColumn = document.createElement("td")
     const acoesColumn = document.createElement("td")
-    
-    const btnDelete = document.createElement("button")
-    btnDelete.classList.add("btn-info")
-    btnDelete.innerHTML = '<img src="../IMAGES/trash.svg"></img>';
-    btnDelete.addEventListener("click", () => remover(id,name,row))
-    
-    const btnEdit = document.createElement("button")
-    btnEdit.setAttribute('data-bs-toggle',"modal")
-    btnEdit.setAttribute('data-bs-target',"#form-modal-update")
-    btnEdit.classList.add("btn-info")
-    btnEdit.innerHTML = '<img src="../IMAGES/edit.svg"></img>';
-    btnEdit.addEventListener("click", () => openUpdateModal(id,name))
+
+    const btnDelete = createBtnDelete(id,name,row)
+    const btnEdit = createBtnEdit(id,name)
     
     row.setAttribute("class","course-row")
     idColumn.setAttribute("scope","row")
@@ -91,7 +82,7 @@ function createRow({id,name}){
 }
 
 async function updateCourse(){
-    const name = inputNameUpdate.value.trim();
+    var name = inputNameUpdate.value.trim();
     name = verifyName(name)
     if (name){
         const response = await fetch("http://localhost:8080/courses/"+actualId,
@@ -134,6 +125,24 @@ async function removeAllCourses(){
             window.location.reload();
         }
     }
+}
+
+function createBtnDelete(){
+    const btnDelete = document.createElement("button")
+    btnDelete.classList.add("btn-info")
+    btnDelete.innerHTML = '<img src="../IMAGES/trash.svg"></img>';
+    btnDelete.addEventListener("click", () => remover(id,name,row))
+    return btnDelete
+}
+
+function createBtnEdit(id,name){
+    const btnEdit = document.createElement("button")
+    btnEdit.setAttribute('data-bs-toggle',"modal")
+    btnEdit.setAttribute('data-bs-target',"#form-modal-update")
+    btnEdit.classList.add("btn-info")
+    btnEdit.innerHTML = '<img src="../IMAGES/edit.svg"></img>';
+    btnEdit.addEventListener("click", () => openUpdateModal(id,name))
+    return btnEdit
 }
 
 function verifyName(name){

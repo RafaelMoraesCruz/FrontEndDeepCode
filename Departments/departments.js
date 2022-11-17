@@ -108,17 +108,8 @@ function createRow({id,name} ){
     const nameColumn = document.createElement("td")
     const acoesColumn = document.createElement("td")
 
-    const btnDelete = document.createElement("button")
-    btnDelete.classList.add("btn-info")
-    btnDelete.innerHTML = '<img src="../IMAGES/trash.svg"></img>';
-    btnDelete.addEventListener("click", () => remover(id,name,row))
-
-    const btnEdit = document.createElement("button")
-    btnEdit.classList.add("btn-info")
-    btnEdit.innerHTML = '<img src="../IMAGES/edit.svg"></img>';
-    btnEdit.setAttribute('data-bs-toggle',"modal")
-    btnEdit.setAttribute('data-bs-target',"#form-modal-update")
-    btnEdit.addEventListener('click', () => openUpdateModal(id,name))
+    const btnDelete = createBtnDelete(id,name,row)
+    const btnEdit = createBtnEdit(id,name)
 
     row.setAttribute("class","department-row")
     idColumn.setAttribute("scope","row")
@@ -135,6 +126,25 @@ function createRow({id,name} ){
 
     resultContainer.appendChild(row)
 }
+
+function createBtnDelete(id,name,row){
+    const btnDelete = document.createElement("button")
+    btnDelete.classList.add("btn-info")
+    btnDelete.innerHTML = '<img src="../IMAGES/trash.svg"></img>';
+    btnDelete.addEventListener("click", () => remover(id,name,row))
+    return btnDelete
+}
+
+function createBtnEdit(id,name){
+    const btnEdit = document.createElement("button")
+    btnEdit.setAttribute('data-bs-toggle',"modal")
+    btnEdit.setAttribute('data-bs-target',"#form-modal-update")
+    btnEdit.classList.add("btn-info")
+    btnEdit.innerHTML = '<img src="../IMAGES/edit.svg"></img>';
+    btnEdit.addEventListener("click", () => openUpdateModal(id,name))
+    return btnEdit
+}
+
 
 function verifyName(name){
     name = name.trim()
