@@ -127,6 +127,8 @@ async function removeAllCourses(){
     }
 }
 
+
+
 function createBtnDelete(){
     const btnDelete = document.createElement("button")
     btnDelete.classList.add("btn-info")

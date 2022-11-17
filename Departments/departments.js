@@ -127,6 +127,8 @@ function createRow({id,name} ){
     resultContainer.appendChild(row)
 }
 
+
+
 function createBtnDelete(id,name,row){
     const btnDelete = document.createElement("button")
     btnDelete.classList.add("btn-info")
@@ -144,7 +146,6 @@ function createBtnEdit(id,name){
     btnEdit.addEventListener("click", () => openUpdateModal(id,name))
     return btnEdit
 }
-
 
 function verifyName(name){
     name = name.trim()
