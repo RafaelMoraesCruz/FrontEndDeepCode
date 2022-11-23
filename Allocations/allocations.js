@@ -87,15 +87,19 @@ async function addAllocation(){
         professorId: professorId,
         start: start,
     })},)
-    window.location.reload();
+    if(response.status == 400){
+        alert('error, allocation format is not valid')
+    }
+    // window.location.reload();
 }
 
 async function updateAllocation(){
     var course = inputCourseIdUpdate.value.trim();
     var day = inputDayUpdate.value.trim();
     var professor = inputProfessorIdUpdate.value.trim();
-    var start = inputStartUpdate.value.trim();
+    var start =  inputStartUpdate.value.trim();
     var end = inputEndUpdate.value.trim();
+
     const response = await fetch("http://localhost:8080/allocations/"+actualId,
     {method:"PUT",
     headers: {
@@ -108,6 +112,9 @@ async function updateAllocation(){
         professorId: professor,
         start: start,
     })},)
+    if(response.status == 400){
+        alert('error, allocation format is not valid')
+    }
     window.location.reload();
 }
 
@@ -229,5 +236,6 @@ function createBtnDelete(){
     btnDelete.innerHTML = '<img src="../IMAGES/trash.svg"></img>';
     return btnDelete
 }
+
 
 showAllAllocations()
