@@ -62,7 +62,7 @@ function createRow({id,name}){
     const courseColumn = document.createElement("td")
     const acoesColumn = document.createElement("td")
 
-    const btnDelete = createBtnDelete(id,name,row)
+    const btnDelete = createBtnDelete(id,name)
     const btnEdit = createBtnEdit(id,name)
     
     row.setAttribute("class","course-row")
@@ -129,11 +129,11 @@ async function removeAllCourses(){
 
 
 
-function createBtnDelete(){
+function createBtnDelete(id,name){
     const btnDelete = document.createElement("button")
     btnDelete.classList.add("btn-info")
     btnDelete.innerHTML = '<img src="../IMAGES/trash.svg"></img>';
-    btnDelete.addEventListener("click", () => remover(id,name,row))
+    btnDelete.addEventListener("click", () => remover(id,name))
     return btnDelete
 }
 

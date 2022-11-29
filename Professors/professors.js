@@ -47,7 +47,7 @@ async function searchProfessors() {
 async function addProfessor() {
     var name = inputName.value.trim();
     name = verifyNameSize(name);
-    var cpf = inputCpfUpdate.value.trim()
+    var cpf = inputCPF.value.trim()
     cpf = verifyCpf(cpf).replace('.','').replace('.','').replace('-','');
     const departmentId = inputDepartmentId.value.trim();
     if (name) {
@@ -65,12 +65,12 @@ async function addProfessor() {
                 })
             },)
         if (response.status == 400) {
-            alert("CPF is invalid!")
+            alert("Wrong professor format or duplicated")
         } else {
             alert("Professor create!")
         }
     }
-    // window.location.reload();
+    window.location.reload();
 }
 
 async function remover(id, name, row) {
@@ -106,6 +106,9 @@ async function updateProfessor() {
                     name: name
                 })
             },)
+        if (response.status == 400 || response.status == 404) {
+            alert("Wrong professor format or duplicated")
+        }
     }
     window.location.reload();
 }
