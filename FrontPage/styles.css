@@ -75,3 +75,15 @@ img{
     text-align: center;
     color: black;
 }
+
+.qualiti-logo{
+    position: absolute;
+    margin: auto 37%;
+}
+
+.team-text{
+    display: flex;
+    justify-content: left;
+    align-items: flex-end;
+    height: 150px;
+}
