@@ -78,7 +78,7 @@ function openUpdateModal(id,name){
 }
 
 async function remover(id,name, row){
-    const result = confirm("Você deseja remover o curso de" +name + "?")
+    const result = confirm("Do you really wish to remove the " +name + " department?")
     if (result){
         const response = await fetch("http://localhost:8080/departments"+"/"+id, {method:"DELETE"})
         if (response.status == 204){

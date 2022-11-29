@@ -74,7 +74,7 @@ async function addProfessor() {
 }
 
 async function remover(id, name, row) {
-    const result = confirm("Would you like remove professor: " + name)
+    const result = confirm("Would you like to remove professor: " + name+"?")
     if (result) {
         const response = await fetch("http://localhost:8080/professors" + "/" + id, { method: "DELETE" })
         if (response.status == 204) {
@@ -82,7 +82,7 @@ async function remover(id, name, row) {
             alert("Professor " + name + " successfully removed!")
             window.location.reload();
         }else{
-            alert("Professor " + name + " have allocation!")
+            alert("Professor " + name + " has an allocation!")
         }
     }
 }

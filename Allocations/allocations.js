@@ -119,7 +119,7 @@ async function updateAllocation(){
 }
 
 async function remover(id,row){
-    const result = confirm("Você deseja remover a allocação? id=" +id)
+    const result = confirm("Would you like to remove allocation: id=" + id+"?")
     if (result){
         const response = await fetch("http://localhost:8080/allocations"+"/"+id, {method:"DELETE"})
         if (response.ok){
