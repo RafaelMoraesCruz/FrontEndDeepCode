@@ -14,3 +14,8 @@ h1{
     text-align: right;
 }
 
+.btn-info{
+    border-radius: 50%;
+    margin: 0 2px;
+}
+
