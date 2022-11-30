@@ -5,7 +5,7 @@ setInterval(updateTime,1000)
 
 function updateTime(){
     var time = new Date().toLocaleTimeString()
-    timeLine.innerHTML = `<strong>time:</strong> ${time}`
+    timeLine.innerHTML = "<strong>time:</strong>"+time
 }
 
 async function showWeatherRecife(){
