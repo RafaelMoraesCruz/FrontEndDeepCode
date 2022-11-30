@@ -90,7 +90,7 @@ async function addAllocation(){
     if(response.status == 400){
         alert('error, allocation format is not valid')
     }
-    // window.location.reload();
+    window.location.reload();
 }
 
 async function updateAllocation(){

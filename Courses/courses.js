@@ -112,6 +112,8 @@ async function remover(id,name){
         const response = await fetch("http://localhost:8080/courses/"+id, {method:"DELETE"})
         if (response.ok){
             window.location.reload();
+        } else if (response.status == 400) {
+            alert("Course belongs to an allocation")
         }
     }
 }
